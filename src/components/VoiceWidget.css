@@ -1,0 +1,297 @@
+/* General App Styling */
+.App {
+  min-height: 100vh;
+  background-color: #ffffff; /* Blank page background */
+  position: relative; /* For positioning the FAB and widget */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* FAB Launcher Button */
+.fab-launcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #D32F2F; /* Pizza Red */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.fab-launcher:hover {
+  background-color: #C62828; /* Darker Pizza Red */
+  transform: scale(1.05);
+}
+
+/* Chat Widget Container */
+.chat-widget-container {
+  position: fixed;
+  bottom: 90px; /* Position above the FAB */
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background-color: #F8F8F8; /* Very light grey background */
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Ensures content respects border-radius */
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Widget Header */
+.widget-header {
+  background-color: #D32F2F; /* Pizza Red */
+  color: white;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.widget-header span {
+  flex-grow: 1;
+}
+
+.widget-close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1; /* Helps with vertical alignment of icon */
+}
+
+.widget-close-button:hover {
+  opacity: 0.8;
+}
+
+/* Widget Content Area */
+.widget-content {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto; /* Scroll if content overflows */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align chat log to the top */
+  align-items: stretch; /* Stretch chat messages to full width */
+  text-align: left; /* Default text align for chat messages */
+}
+
+.chat-log-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between messages */
+  width: 100%;
+  margin-bottom: 10px; /* Space below chat log before order details */
+}
+
+.chat-message {
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.chat-message .message-speaker {
+  font-weight: bold;
+  margin-right: 5px;
+  display: block; /* Speaker on its own line or inline as preferred */
+  margin-bottom: 2px;
+  font-size: 12px;
+  color: #555;
+}
+
+.chat-message.user {
+  background-color: #FFC0CB; /* Light Pink for user messages */
+  color: #333;
+  align-self: flex-end; /* User messages on the right */
+  border-bottom-right-radius: 2px; /* Bubble tail effect */
+}
+
+.chat-message.assistant {
+  background-color: #e0e0e0; /* Light Grey for assistant messages */
+  color: #333;
+  align-self: flex-start; /* Assistant messages on the left */
+  border-bottom-left-radius: 2px; /* Bubble tail effect */
+}
+
+.call-status { /* Style might be reused for system messages in chat log or removed */
+  font-size: 14px;
+  color: #777777;
+  text-align: center;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+/* Widget Footer */
+.widget-footer {
+  padding: 15px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* General Widget Button Styles (Start/End Call) */
+.widget-button {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.widget-button:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.widget-button:disabled {
+  background-color: #cccccc !important; /* Ensure disabled style overrides */
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.start-call-button {
+  background-color: #D32F2F; /* Pizza Red */
+}
+
+.start-call-button:hover:not(:disabled) {
+  background-color: #C62828; /* Darker Pizza Red */
+}
+
+.end-call-button.active {
+  background-color: #50C878; /* A contrasting green for "End Call" or a darker red */
+}
+
+.end-call-button.active:hover {
+  background-color: #3E9A5F; /* Darker green */
+}
+
+
+/* Error Message Styles for Widget */
+.error-message.widget-error { /* More specific selector */
+  color: #D8000C; /* Stronger red for errors */
+  background-color: #FFD2D2; /* Light red background for error message */
+  border: 1px solid #D8000C;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 13px;
+  margin-top: 10px;
+  width: 90%; /* Make error message take more width */
+  box-sizing: border-box;
+}
+
+/* Remove previously used styles if they conflict or are no longer needed */
+.widget-container { /* This class was used before, ensure it's removed or adapted */
+  /* display: none; */ /* Or remove entirely if not used by .chat-widget-container */
+}
+
+/* Order Details Styling */
+.order-details {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0e0; /* Light separator line */
+  text-align: left; /* Align text to the left within this block */
+  width: 100%; /* Take full width of the content area */
+  box-sizing: border-box;
+}
+
+.order-details h4 {
+  margin-top: 0; /* Remove default top margin from h4 */
+  margin-bottom: 8px;
+  font-size: 15px; /* Slightly larger for the heading */
+  color: #333333; /* Dark grey for heading */
+  font-weight: 600; /* Bolder heading */
+}
+
+.order-description {
+  font-size: 14px;
+  color: #555555; /* Medium grey for description text */
+  margin-bottom: 10px;
+  white-space: pre-wrap; /* Respects newlines in the description string */
+  line-height: 1.4; /* Better readability for multi-line descriptions */
+}
+
+.order-total {
+  font-weight: bold;
+  font-size: 15px;
+  color: #333333; /* Dark grey for total */
+  text-align: right; /* Align total to the right */
+  margin-top: 10px;
+}
+
+/* Voice Waveform Styling -- REMOVED */
+/*
+.voice-waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px; 
+  margin: 5px 0; 
+}
+
+.waveform-bar {
+  width: 4px; 
+  height: 5px; 
+  background-color: #FF6B6B; 
+  margin: 0 2px; 
+  border-radius: 2px; 
+  animation-name: wave;
+  animation-duration: 1.2s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes wave {
+  0%, 100% {
+    height: 5px;
+    opacity: 0.7;
+  }
+  50% {
+    height: 25px; 
+    opacity: 1;
+  }
+}
+
+.waveform-bar:nth-child(1) {
+  animation-delay: 0s;
+}
+.waveform-bar:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.waveform-bar:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.waveform-bar:nth-child(4) {
+  animation-delay: 0.45s;
+}
+.waveform-bar:nth-child(5) {
+  animation-delay: 0.6s;
+}
+*/
